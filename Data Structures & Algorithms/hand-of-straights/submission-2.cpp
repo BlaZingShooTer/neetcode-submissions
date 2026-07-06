@@ -1,0 +1,25 @@
+class Solution {
+public:
+    bool isNStraightHand(vector<int>& hand, int groupSize) {
+        if(hand.size() % groupSize != 0) return false;
+
+        map<int ,int> cnt;
+
+        for(int num : hand) cnt[num]++;
+
+        sort(hand.begin(), hand.end());
+
+        for(int num : hand){
+            
+            if(cnt[num] > 0){
+                for(int i = num; i < num + groupSize;i++){
+                    if(cnt[i] == 0) return false;
+                    cnt[i]--;
+                }
+            }
+           
+        }
+
+        return true;
+    }
+};
